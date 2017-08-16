@@ -13,51 +13,76 @@ CC=g++
 # Variaveis para os subdiretorios
 LIB_DIR=./lib
 INC_DIR=./include
-SRC_DIR=./src
+SRC_DIR1=./src/q1
+SRC_DIR2=./src/q2
+SRC_DIR3=./src/q3
 OBJ_DIR=./build
 BIN_DIR=./bin
 DOC_DIR=./doc
 TEST_DIR=./test
-# Outras variaveis
-# Opcoes de compilacao
+
+
+
 CFLAGS = -Wall -pedantic -ansi -std=c++11 -I. -I$(INC_DIR)
-# Garante que os alvos desta lista nao sejam confundidos com arquivos de mesmo nome
 .PHONY: all clean distclean doxy
-# Define o alvo (target) para a compilacao completa.
-# Define os alvos questao01, questao02 e questao03 como dependencias.
-# Ao final da compilacao, remove os arquivos objeto.
-all: questao02
+
+all: questao01 questao02 questao03 
 debug: CFLAGS += -g -O0
-debug: questao02
-# Alvo (target) para a construcao do executavel questao01
-# Define os arquivos classe11.o, classe12.o e main1.o como dependencias
-questao02: $(OBJ_DIR)/questao2.o $(OBJ_DIR)/primo.o $(OBJ_DIR)/fatorial.o
+debug: questao01 questao02 questao03
+
+questao01: $(OBJ_DIR)/questao1.o $(OBJ_DIR)/calcula.o $(OBJ_DIR)/area.o $(OBJ_DIR)/perimetro.o $(OBJ_DIR)/volume.o
 	@echo "============="
 	@echo "Ligando o alvo $@"
 	@echo "============="
 	$(CC) $(CFLAGS) -o $(BIN_DIR)/$@ $^
 	@echo "+++ [Executavel questao01 criado em $(BIN_DIR)] +++"
 	@echo "============="
-# Alvo (target) para a construcao do objeto classe11.o
-# Define os arquivos classe11.cpp e classe11.h como dependencias.
-$(OBJ_DIR)/fatorial.o: $(SRC_DIR)/fatorial.cpp
-	#$(INC_DIR)/fatorial.h
+
+$(OBJ_DIR)/area.o: $(SRC_DIR1)/area.cpp
 	$(CC) -c $(CFLAGS) -o $@ $<
-# Alvo (target) para a construcao do objeto classe12.o
-# Define os arquivos classe12.cpp, classe12.h e classe11.o como dependencias.
-$(OBJ_DIR)/primo.o: $(SRC_DIR)/primo.cpp
-	#$(INC_DIR)/primo.h
+
+$(OBJ_DIR)/perimetro.o: $(SRC_DIR1)/perimetro.cpp
 	$(CC) -c $(CFLAGS) -o $@ $<
-# Alvo (target) para a construcao do objeto main1.o
-# Define o arquivo main1.cpp como dependencias.
-$(OBJ_DIR)/questao2.o: $(SRC_DIR)/questao2.cpp
+
+$(OBJ_DIR)/volume.o: $(SRC_DIR1)/volume.cpp
 	$(CC) -c $(CFLAGS) -o $@ $<
+
+$(OBJ_DIR)/calcula.o: $(SRC_DIR1)/calcula.cpp
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+$(OBJ_DIR)/questao1.o: $(SRC_DIR1)/questao1.cpp
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+
+questao02: $(OBJ_DIR)/questao2.o $(OBJ_DIR)/primo.o $(OBJ_DIR)/fatorial.o
+	@echo "============="
+	@echo "Ligando o alvo $@"
+	@echo "============="
+	$(CC) $(CFLAGS) -o $(BIN_DIR)/$@ $^
+	@echo "+++ [Executavel questao02 criado em $(BIN_DIR)] +++"
+	@echo "============="
+
+$(OBJ_DIR)/fatorial.o: $(SRC_DIR2)/fatorial.cpp
+	
+	$(CC) -c $(CFLAGS) -o $@ $<
+$(OBJ_DIR)/primo.o: $(SRC_DIR2)/primo.cpp
+
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+$(OBJ_DIR)/questao2.o: $(SRC_DIR2)/questao2.cpp
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+questao03: $(OBJ_DIR)/questao3.o
+	$(CC)  $(CFLAGS) $(OBJ_DIR)/questao3.o -o $(BIN_DIR)/questao3
+
+$(OBJ_DIR)/questao3.o: 
+	$(CC) -c $(CFLAGS) -O0 -g -pg $(SRC_DIR3)/questao3.cpp -o $(OBJ_DIR)/questao3.o
+
 
 doxy:
 	$(RM) $(DOC_DIR)/*
-	doxygen Doxyfile
-# Alvo (target) usado para limpar os arquivos temporarios (objeto)
-# gerados durante a compilacao, assim como os arquivos binarios/executaveis.
+
+
 clean:
 	$(RM) $(BIN_DIR)/*
 	$(RM) $(OBJ_DIR)/*
