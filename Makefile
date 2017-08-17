@@ -77,7 +77,9 @@ questao03: $(OBJ_DIR)/questao3.o
 
 $(OBJ_DIR)/questao3.o: 
 	$(CC) -c $(CFLAGS) -O0 -g -pg $(SRC_DIR3)/questao3.cpp -o $(OBJ_DIR)/questao3.o
-
+	@echo "+++ [Executavel questao02 criado em $(BIN_DIR)] +++"
+	@echo "============="
+	
 
 doxy:
 	$(RM) $(DOC_DIR)/*
