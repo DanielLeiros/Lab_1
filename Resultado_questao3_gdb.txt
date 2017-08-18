@@ -1,0 +1,21 @@
+Resultado do gdb para a questão 3:
+arg1 = 11; arg2 = 23; resultado = 58; 
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe0b8) at ./src/q3/questao3.cpp:28
+28		funcZ (arg1,arg2,&resultado);
+(gdb) s
+funcZ (a=11, b=23, result=0x7fffffffdfc0) at ./src/q3/questao3.cpp:18
+18		a++;
+(gdb) s
+19		(*result) += a + 2*b;
+(gdb) s
+20	}
+(gdb) s
+main (argc=1, argv=0x7fffffffe0b8) at ./src/q3/questao3.cpp:30
+30	return 0;
+(gdb) p resultado 
+$1 = 58
+(gdb) p arg1
+$2 = 11
+(gdb) p arg2
+$3 = 23

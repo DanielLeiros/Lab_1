@@ -7,6 +7,19 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+/**
+@file arquivo com as opções para as funcionalidades da questão 1 
+@author Daniel Maciel de Leiros Ferreira
+@since 10/08/2017
+@date 17/08/2017
+*/
+
+/**
+@brief A função escolha serve como um menu e transfere os parâmetros para as funções específicas
+@param x,y e z como dimensoes e opt como opção para o menu
+@return retorno encerra a função 
+*/
+
 int escolha(){
 
 	int x,y,z,opt;

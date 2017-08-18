@@ -3,7 +3,18 @@
 using std::cout;
 using std::cin;
 using std::endl;
+/**
+@file arquivo com operações de funcionalidades da questão 1 
+@author Daniel Maciel de Leiros Ferreira
+@since 10/08/2017
+@date 17/08/2017
+*/
 
+/**
+@brief todas as seguintes funcoes servem para calcular a área dos tipos desejados
+@param x,y e z como dimensoes
+@return O retorno das funções é a área calculada para cada tipo, levando em consideração a fórmula matemática
+*/
 float aTriEq(int x, int y){
 	float area;
 
@@ -11,7 +22,6 @@ float aTriEq(int x, int y){
 return area;
 
 }
-
 int aRetangulo( int x, int y){
 	int area;
 

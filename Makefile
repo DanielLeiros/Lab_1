@@ -27,8 +27,8 @@ CFLAGS = -Wall -pedantic -ansi -std=c++11 -I. -I$(INC_DIR)
 .PHONY: all clean distclean doxy
 
 all: questao01 questao02 questao03 
+
 debug: CFLAGS += -g -O0
-debug: questao01 questao02 questao03
 
 questao01: $(OBJ_DIR)/questao1.o $(OBJ_DIR)/calcula.o $(OBJ_DIR)/area.o $(OBJ_DIR)/perimetro.o $(OBJ_DIR)/volume.o
 	@echo "============="
@@ -58,8 +58,8 @@ questao02: $(OBJ_DIR)/questao2.o $(OBJ_DIR)/primo.o $(OBJ_DIR)/fatorial.o
 	@echo "============="
 	@echo "Ligando o alvo $@"
 	@echo "============="
-	$(CC) $(CFLAGS) -o $(BIN_DIR)/$@ $^
-	@echo "+++ [Executavel questao02 criado em $(BIN_DIR)] +++"
+	$(CC) $(CFLAGS) -g -pg -O0 -o $(BIN_DIR)/$@ $^
+	@echo "+++ [Executavel questao2 criado em $(BIN_DIR)] +++"
 	@echo "============="
 
 $(OBJ_DIR)/fatorial.o: $(SRC_DIR2)/fatorial.cpp
@@ -77,15 +77,14 @@ questao03: $(OBJ_DIR)/questao3.o
 
 $(OBJ_DIR)/questao3.o: 
 	$(CC) -c $(CFLAGS) -O0 -g -pg $(SRC_DIR3)/questao3.cpp -o $(OBJ_DIR)/questao3.o
-	@echo "+++ [Executavel questao02 criado em $(BIN_DIR)] +++"
+	@echo "+++ [Executavel questao3 criado em $(BIN_DIR)] +++"
 	@echo "============="
-	
 
 doxy:
 	$(RM) $(DOC_DIR)/*
 
 
-clean:
+clear:
 	$(RM) $(BIN_DIR)/*
 	$(RM) $(OBJ_DIR)/*
 # FIM do Makefile
